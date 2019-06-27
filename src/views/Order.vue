@@ -230,177 +230,7 @@
       </v-stepper-content>
     </v-stepper-items>
   </v-stepper>
- <!-- <v-form v-model="valid">
-    
-  <v-expansion-panel >
-    <v-expansion-panel-content id="base" >
-      <template v-slot:header>
-        <div>Base de la pizza</div>
-      </template>
-      <v-container>
-        <v-layout row>
-          <v-flex xs6>
-          <v-card xs6>
-            <v-img
-              src="https://www.laespanolaaceites.com/uploads/recetas/fotos/pizza-con-chorizo-jamon-y-queso.jpg"
-              height="200px"
-            >
-            </v-img>
-            <v-card-title primary-title>
-              <div>
-                <div class="headline">Masa</div>
-              </div>
-            </v-card-title>
-            <v-card-actions>
-              <v-select v-model="selectMasa" v-validate="'required'"  :error-messages="errors.collect('select')" data-vv-name="select" required :items="itemsMasa" box label="Elija el tipo de masa"></v-select>          
-            </v-card-actions>  
-          </v-card>
-          </v-flex>
-          <v-flex xs6>
-          <v-card xs6>
-            <v-img
-              src="https://www.laespanolaaceites.com/uploads/recetas/fotos/pizza-con-chorizo-jamon-y-queso.jpg"
-              height="200px"
-            >
-            </v-img>
-            <v-card-title primary-title>
-              <div>
-                <div class="headline">Salsa</div>
-              </div>
-            </v-card-title>
-            <v-card-actions>
-              <v-select v-model="selectSalsa" v-validate="'required'"  :error-messages="errors.collect('select')" data-vv-name="select" :items="itemsSalsa" box label="Elija la salsa"></v-select>     
-            </v-card-actions>  
-          </v-card>
-          </v-flex>
-        </v-layout>
-      </v-container>
-    </v-expansion-panel-content>
-    <v-expansion-panel-content id="ingredientes">
-      <template v-slot:header>
-        <div>Ingredientes</div>
-      </template>
-      <v-card>
-        <v-card-text>
-          <v-layout>
-            <v-checkbox
-            v-model="peperoni"
-            label="Peperoni"
-          ></v-checkbox>
-            <v-checkbox
-            v-model="pollo"
-            label="Pollo"
-          ></v-checkbox>
-            <v-checkbox
-            v-model="salami"
-            label="Salami"
-          ></v-checkbox>
-          </v-layout>
-          <v-layout>
-            <v-checkbox
-            v-model="aceitunas"
-            label="Aceitunas"
-          ></v-checkbox>
-            <v-checkbox
-            v-model="piña"
-            label="Piña"
-          ></v-checkbox>
-            <v-checkbox
-            v-model="jamon"
-            label="Jamón"
-          ></v-checkbox>
-          </v-layout>
-        </v-card-text>
-      </v-card>
-    </v-expansion-panel-content>
-    <v-expansion-panel-content id="datos">
-      <template v-slot:header>
-        <div>Datos de entrega</div>
-      </template>
-      <v-card>
-        <v-card-text>
-          <v-container>
-            <v-layout>
-              <v-flex xs12 md4>
-                <v-text-field
-                v-validate="'required'"  :error-messages="errors.collect('campo')" data-vv-name="campo"
-                  v-model="firstname"
-                  :rules="nameRules"
-                  label="Nombre"
-                  required
-                ></v-text-field>
-              </v-flex>
-              <v-flex xs12 md4>
-                <v-text-field
-                v-validate="'required'"  :error-messages="errors.collect('campo')" data-vv-name="campo"
-                  v-model="lastname"
-                  :rules="nameRules"
-                  label="Apellido"
-                  required
-                ></v-text-field>
-              </v-flex>
-              <v-flex xs12 md4>
-                <v-text-field
-                v-validate="'required'"  :error-messages="errors.collect('campo')" data-vv-name="campo"
-                  v-model="email"
-                  :rules="emailRules"
-                  label="E-mail"
-                  required
-                ></v-text-field>
-              </v-flex>
-            </v-layout>
-            SEGUNDA PARTE DE FORM
-            <v-badge></v-badge>
-            <v-layout>
-              <v-flex xs12 md4>
-                <v-text-field
-                v-validate="'required'"  :error-messages="errors.collect('campo')" data-vv-name="campo"
-                  v-model="address"
-                  :rules="addressRules"
-                  label="Domicilio"
-                  required
-                ></v-text-field>
-              </v-flex>
-              <v-flex xs12 md4>
-                <v-text-field
-                v-validate="'required'"  :error-messages="errors.collect('campo')" data-vv-name="campo"
-                  v-model="zip"
-                  :rules="zipRules"
-                  label="Codigo postal"
-                  required
-                ></v-text-field>
-              </v-flex>
-              <v-flex xs12 md4>
-                <v-text-field
-                v-validate="'required'"  :error-messages="errors.collect('campo')" data-vv-name="campo"
-                  v-model="phone"
-                  :rules="phoneRules"
-                  label="Telefono"
-                  required
-                ></v-text-field>
-              </v-flex>
-            </v-layout>
-            TERCERA PARTE DEL FORM
-            <v-badge></v-badge>
-            <v-layout>
-              <v-flex xs12 md20>
-                <div ref="card"></div>
-              </v-flex>
-              <v-flex xs12 md4>
-                
-                <div><v-btn @click="hola" >Agregar a carro</v-btn> </div>
-              </v-flex>
-              <v-flex xs12 md3>
-                <div><v-btn @click="hola" >Comprar</v-btn> </div>
-              </v-flex>
-            </v-layout>
-          </v-container>
-        </v-card-text>
-      </v-card>
-    </v-expansion-panel-content>
-  </v-expansion-panel>
- 
-  </v-form> -->
+
   </v-container>
 </v-app>
 </template>
@@ -419,6 +249,7 @@ export default {
       validator: 'new'
     },
     data: () => ({
+        string:"",
         precio: 0,
           e1: 0,
           alert:false,
@@ -485,8 +316,8 @@ export default {
     }),
     
     mounted () {
-      card = elements.create('card');
-      card.mount(this.$refs.card);
+      card = elements.create('card')
+      card.mount(this.$refs.card)
       this.$validator.localize('es', this.dictionary)
       if(localStorage.tamaño){
         this.tamaño = localStorage.tamaño
@@ -522,8 +353,9 @@ export default {
               jamon:this.jamon,
               selectSalsa: this.selectSalsa,
               selectMasa: this.selectMasa,
+              precio: this.precio,
               tamaño: this.tamaño,
-              precio: this.precio
+              
               };
           console.log("Esta es la orden: ", this.order)
               this.e1 = 3
@@ -562,7 +394,9 @@ export default {
                 this.order.precio = this.order.precio + 80;
               }
             }
-            console.log("Alfinal",this.order)
+            this.string = JSON.stringify(this.order)
+            console.log("Este es el strung: ", this.string)
+            console.log("Alfinal",JSON.stringify(this.order))
             this.listaOrder.push(this.order)
             localStorage.setItem('listaOrden',JSON.stringify(this.listaOrder))
             
@@ -579,12 +413,21 @@ export default {
               this.messageAlert = "Falta rellenar los campos."
               this.alert = true
             }
-          })
           console.log("Este es quien pide: ", this.owner)
+          
+          
+          let data = {
+            orden: this.string
+          }
+          console.log("DATA: ",data )
+           axios.post('http://127.0.0.1:3333/api/v1/ordenes',data).then(result => console.log("BASE DE TADOS",result))
+          })
+
           this.purchase()
       },
       purchase() {
     stripe.createToken(card).then(function(result:any) {
+      //axios.post('http://127.0.0.1:3333/api/v1/ordenes',this.order)
       console.log("LA WEA DE LA TARJETA: ", result)
     });
   },

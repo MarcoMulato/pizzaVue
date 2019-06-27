@@ -122,16 +122,116 @@
         </v-slide-y-transition>
       </v-card>
     </v-flex>
+  
   </v-layout>
+  <v-layout>
+  <ul id="example-1">
+  <li v-for="item in listaPizza">
+   Ingredientes: {{ item.ingredientes }}
+   <br>
+   Precio: ${{ item.precio }}
+   <br>
+   Masa: {{ item.selectMasa }}
+   <br>
+   Salsa: {{ item.selectSalsa }}
+
+  </li>
+</ul>
+  </v-layout>
+  <!--
+  <v-layout row>
+    <v-flex xs12 sm6 offset-sm3>
+      <v-card>
+        <v-toolbar color="cyan" dark>
+          <v-toolbar-title>Historial de pedidos</v-toolbar-title>
+        </v-toolbar>
+
+        <v-list two-line>
+          <template v-for="(item) in listaPizza">
+            <v-subheader
+              :key="item.id"
+            >
+              Tamaño de pizza: {{ item.ingredientes }}
+            </v-subheader>
+            <v-list-tile
+              :key="item.orden"
+            >
+
+              <v-list-tile-content>
+                <v-list-tile-title v-html="item.orden"></v-list-tile-title>
+                <v-list-tile-sub-title v-html="item.orden"></v-list-tile-sub-title>
+              </v-list-tile-content>
+            </v-list-tile>
+          </template>
+        </v-list>
+      </v-card>
+    </v-flex>
+  </v-layout>
+  -->
   </v-container>
+  
 </v-app>
 </template>
 
-<script>
+<script lang="ts">
+import axios from 'axios';
+
   export default {
     data: () => ({
+      items:[],
+      listaPizza:[],
+      pizza:{
+        tamaño:"",
+        ingredientes:"",
+        selectSalsa:"",
+        selectMasa:"",
+        precio:0,
+      },
       show: false,
     }),
+  created (){
+    axios.get('http://127.0.0.1:3333/api/v1/ordenes').then(response => {
+      this.items = response.data;
+      console.log("LO QUE CONSIGUE: ",this.items[0])
+    console.log(JSON.parse(this.items.length))
+    for (let index = 0; index < this.items.length; index++) {
+     this.items[index] = JSON.parse(this.items[index].orden) 
+     console.log("AAAAAAAAAAA",this.items[index])
+    if (this.items[index].aceitunas==true) {
+      console.log("Entra")
+      this.pizza.ingredientes=this.pizza.ingredientes+" "+"aceitunas "
+    }
+    if(this.items[index].jamon==true){
+      this.pizza.ingredientes=this.pizza.ingredientes+" "+"jamon "
+    }
+    if(this.items[index].peperoni==true){
+      this.pizza.ingredientes=this.pizza.ingredientes+" "+"peperoni "
+    }
+    if(this.items[index].piña==true){
+      this.pizza.ingredientes=this.pizza.ingredientes+" "+"piña "
+    }
+    if(this.items[index].pollo==true){
+      this.pizza.ingredientes=this.pizza.ingredientes+" "+"pollo "
+    }
+    if(this.items[index].salami==true){
+      this.pizza.ingredientes=this.pizza.ingredientes+" "+"salami "
+    }
+    this.pizza.precio = this.items[index].precio
+    this.pizza.selectMasa = this.items[index].selectMasa
+    this.pizza.selectSalsa = this.items[index].selectSalsa
+    console.log("pizza", this.pizza)
+    this.listaPizza.push(this.pizza)
+    this.pizza = {
+        tamaño:"",
+        ingredientes:"",
+        salsa:"",
+        masa:""
+      }
+    console.log("pizzasss", this.listaPizza)
+    }
+    
+    })
+  }
   };
 </script>
 
