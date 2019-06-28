@@ -421,14 +421,23 @@ export default {
           }
           console.log("DATA: ",data )
            axios.post('http://127.0.0.1:3333/api/v1/ordenes',data).then(result => console.log("BASE DE TADOS",result))
+           
+          console.log("Se le mandara este precio: ", this.order.precio)
+          this.purchase(this.order.precio)
           })
-
-          this.purchase()
       },
-      purchase() {
+      purchase(precio) {
+        let cosa = precio
+        console.log("SJKLC JEJLFE JKLFSJKL VSFHJ VRSFJK L  :", cosa)
     stripe.createToken(card).then(function(result:any) {
       //axios.post('http://127.0.0.1:3333/api/v1/ordenes',this.order)
       console.log("LA WEA DE LA TARJETA: ", result)
+      let data2={
+        stripe:result.token.id,
+        pago:cosa
+      }
+      console.log("result con precio", data2)
+      axios.post('http://127.0.0.1:3333/api/v1/pago',data2).then(result => console.log("PAGO",result))
     });
   },
       submit () {
