@@ -50,13 +50,13 @@
         <v-card-actions>
           <v-btn flat color="green" :to="{name: 'order', params: {tamaño:'mediano'}}" >Ordenar</v-btn>
           <v-spacer></v-spacer>
-          <v-btn icon @click="show = !show">
-            <v-icon>{{ show ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}</v-icon>
+          <v-btn icon @click="show2 = !show2">
+            <v-icon>{{ show2 ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}</v-icon>
           </v-btn>
         </v-card-actions>
 
         <v-slide-y-transition>
-          <v-card-text v-show="show">
+          <v-card-text v-show="show2">
             Estas cosas nadie las lee por que solo ven la imagen y la compran por que estan gordos, F.
           </v-card-text>
         </v-slide-y-transition>
@@ -80,13 +80,13 @@
         <v-card-actions>
           <v-btn flat color="green" :to="{name: 'order', params: {tamaño:'grande'}}">Ordenar</v-btn>
           <v-spacer></v-spacer>
-          <v-btn icon @click="show = !show">
-            <v-icon>{{ show ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}</v-icon>
+          <v-btn icon @click="show3 = !show3">
+            <v-icon>{{ show3 ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}</v-icon>
           </v-btn>
         </v-card-actions>
 
         <v-slide-y-transition>
-          <v-card-text v-show="show">
+          <v-card-text v-show="show3">
             Estas cosas nadie las lee por que solo ven la imagen y la compran por que estan gordos, F.
           </v-card-text>
         </v-slide-y-transition>
@@ -110,33 +110,19 @@
         <v-card-actions>
           <v-btn flat color="green"  :to="{name: 'order', params: {tamaño:'xgrande'}}" >Ordenar</v-btn>
           <v-spacer></v-spacer>
-          <v-btn icon @click="show = !show">
-            <v-icon>{{ show ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}</v-icon>
+          <v-btn icon @click="show4 = !show4">
+            <v-icon>{{ show4 ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}</v-icon>
           </v-btn>
         </v-card-actions>
 
         <v-slide-y-transition>
-          <v-card-text v-show="show">
+          <v-card-text v-show="show4">
             Estas cosas nadie las lee por que solo ven la imagen y la compran por que estan gordos, F.
           </v-card-text>
         </v-slide-y-transition>
       </v-card>
     </v-flex>
   
-  </v-layout>
-  <v-layout>
-  <ul id="example-1">
-  <li v-for="item in listaPizza">
-   Ingredientes: {{ item.ingredientes }}
-   <br>
-   Precio: ${{ item.precio }}
-   <br>
-   Masa: {{ item.selectMasa }}
-   <br>
-   Salsa: {{ item.selectSalsa }}
-
-  </li>
-</ul>
   </v-layout>
   <!--
   <v-layout row>
@@ -173,7 +159,7 @@
 </v-app>
 </template>
 
-<script lang="ts">
+<script lang="js">
 import axios from 'axios';
 
   export default {
@@ -188,9 +174,12 @@ import axios from 'axios';
         precio:0,
       },
       show: false,
+      show2: false,
+      show3: false,
+      show4: false,
     }),
   created (){
-    axios.get('http://127.0.0.1:3333/api/v1/ordenes').then(response => {
+    axios.get('https://a3ca6c0c.ngrok.io/api/v1/ordenes').then(response => {
       this.items = response.data;
       console.log("LO QUE CONSIGUE: ",this.items[0])
     console.log(JSON.parse(this.items.length))

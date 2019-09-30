@@ -234,7 +234,7 @@
   </v-container>
 </v-app>
 </template>
-<script lang="ts">
+<script lang="js">
 let stripe = Stripe(`pk_test_IQrl5Ley7vuMVuMKJQ2y7mtK00S2xQwKx0`),
 elements = stripe.elements(),
 card = undefined;
@@ -248,7 +248,8 @@ export default {
     $_veeValidate: {
       validator: 'new'
     },
-    data: () => ({
+    data () {
+      return{
         string:"",
         precio: 0,
           e1: 0,
@@ -289,7 +290,7 @@ export default {
           firstname: '',
       lastname: '',
       nameRules: [
-        v => !!v || 'El nombre es requerido',
+        v  => !!v || 'El nombre es requerido',
       ],
       address: '',
       addressRules: [
@@ -310,10 +311,11 @@ export default {
         v => !!v || 'El correo es requerido',
         v => /.+@.+/.test(v)  || 'El correo debe ser valido'
       ],
-      order:<any> {},
-      listaOrder:<any> [],
-      owner :<any>{} 
-    }),
+      order: {},
+      listaOrder: [],
+      owner :{} 
+    };
+    },
     
     mounted () {
       card = elements.create('card')
@@ -326,11 +328,11 @@ export default {
     created () {
        // axios.get( 'https://api.coindesk.com/v1/bpi/currentprice.json').then(response => (console.log(response)))
         this.tamaño = this.$route.params.tamaño;
-        let array = JSON.parse(localStorage.getItem('listaOrden'))
+        let array = JSON.parse(localStorage.getItem('listaOrden')+"")
         console.log("EN STORAGE: ", array[0])
     },
     methods: {
-      validar(scope:any){
+      validar(scope){
         console.log("VALIDANDO P1...")
         this.$validator.validateAll(scope).then((result) => {
           if(result){
@@ -355,12 +357,11 @@ export default {
               selectMasa: this.selectMasa,
               precio: this.precio,
               tamaño: this.tamaño,
-              
               };
           console.log("Esta es la orden: ", this.order)
               this.e1 = 3
       },
-      validarPago(scope:any){
+      validarPago(scope){
         console.log("VALIDANDO P1...")
         this.$validator.validateAll(scope).then((result) => {
           if(result){
@@ -420,16 +421,18 @@ export default {
             orden: this.string
           }
           console.log("DATA: ",data )
-           axios.post('http://127.0.0.1:3333/api/v1/ordenes',data).then(result => console.log("BASE DE TADOS",result))
+           //axios.post('http://127.0.0.1:3333/api/v1/ordenes',data).then(result => console.log("BASE DE TADOS",result))
            
           console.log("Se le mandara este precio: ", this.order.precio)
-          this.purchase(this.order.precio)
+          this.purchase(this.order.precio,this.string)
           })
       },
-      purchase(precio) {
+      purchase(precio, string) {
         let cosa = precio
+        let string2 = string
         console.log("SJKLC JEJLFE JKLFSJKL VSFHJ VRSFJK L  :", cosa)
-    stripe.createToken(card).then(function(result:any) {
+
+    stripe.createToken(card).then(function(result) {
       //axios.post('http://127.0.0.1:3333/api/v1/ordenes',this.order)
       console.log("LA WEA DE LA TARJETA: ", result)
       let data2={
@@ -437,7 +440,15 @@ export default {
         pago:cosa
       }
       console.log("result con precio", data2)
-      axios.post('http://127.0.0.1:3333/api/v1/pago',data2).then(result => console.log("PAGO",result))
+      axios.post('https://a3ca6c0c.ngrok.io/api/v1/pago',data2).then(result => console.log("PAGO",result))
+              let data = {
+            orden: string2,
+            estado:"En proceso",
+            notificacion: localStorage.getItem("tokenNotificaciones"),
+            pago:result.token.id
+          }
+          console.log("DATA: ",data )
+           axios.post('https://a3ca6c0c.ngrok.io/api/v1/ordenes',data).then(result => console.log("BASE DE TADOS",result))
     });
   },
       submit () {
